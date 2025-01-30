@@ -16,4 +16,7 @@ for(f in files){
   }
     
 }
+
+system(paste0("cd /wd/ && find /wd/ -name *_md5_check_report_NAS.txt -exec grep -v ' OK$' {} \\; > /wd/md5errors.txt"),intern=TRUE)
+
 print("Done")
