@@ -3,7 +3,7 @@
 # if(!grepl("/$",wd)) wd<-paste0(wd,"/")
 if(file.exists("/wd/md5verify.log")) unlink(("/wd/md5verify.log"))
 cat(date(),file="/wd/md5verify.log",append = T)
-system(paste0("cd /wd/ && (find /wd/ -name md5sum.txt; find /wd/ -name *.md5) > /wd/md5files.txt 2> /wd/md5verify.log"),intern=TRUE)
+system(paste0("cd /wd/ && (find /wd/ -not -path '*/#recycle/*' -name md5sum.txt; find /wd/ -not -path '*/#recycle/*' -name *.md5) > /wd/md5files.txt 2> /wd/md5verify.log"),intern=TRUE)
 Sys.chmod(c("/wd/md5verify.log","/wd/md5files.txt"), mode = "0666")
 files<-readLines(paste0("/wd/md5files.txt"))
 files<-files[!grepl("/[@#]",files)]
