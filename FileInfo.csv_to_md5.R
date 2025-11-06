@@ -1,6 +1,6 @@
 #!/usr/bin//usr/bin/Rscript --vanilla
   setwd("/wd/")
-  system(paste0("find . -not -path '*/#recycle/*' -name  *_FileInfo.csv > FileInfo_files.txt 2> md5verify.log"),intern=TRUE)
+  system(paste0("find . -not -path '*/#recycle/*' -name  *_FileInfo.csv > FileInfo_files.txt"),intern=TRUE)
   Sys.chmod(c("FileInfo_files.txt"), mode = "0666")
 
   make_md5_from_FileInfo_csv<-function(input){
