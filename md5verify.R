@@ -15,11 +15,11 @@
     if(!file.exists(out)){
       cat("   Check...",file="md5verify.log",append = T)
       print("Check...")
-      system(paste0("cd ",dirname(f)," && md5sum -c ",basename(f)," > ",out," 2>&1"),intern=TRUE)
+      system(paste0("cd ",dirname(f)," && md5sum -c ",basename(f)," > ",basename(out)," 2>&1"),intern=TRUE)
     } else if(sub(" .*","",system(paste("wc -l",f),intern=TRUE)) != sub(" .*","",system(paste("wc -l",out),intern=TRUE))){
       cat("   Recheck...",file="md5verify.log",append = T)
       print("Recheck...")
-      system(paste0("cd ",dirname(f)," && md5sum -c ",basename(f)," > ",out," 2>&1"),intern=TRUE)
+      system(paste0("cd ",dirname(f)," && md5sum -c ",basename(f)," > ",basename(out)," 2>&1"),intern=TRUE)
     }
   }
   system(paste0("find -not -path '*/#recycle/*' -name *_md5_check_report_NAS.txt -exec grep --with-filename -v ' OK$' {} \\; > md5errors.txt 2>&1"),intern=TRUE)
