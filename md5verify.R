@@ -24,5 +24,6 @@
   }
   system(paste0("find -not -path '*/#recycle/*' -name *_md5_check_report_NAS.txt -exec grep --with-filename -v ' OK$' {} \\; > md5errors.txt 2>&1"),intern=TRUE)
   cat(paste0("\n",date()),file="md5verify.log",append = T)
-  Sys.chmod(c("md5verify.log","md5errors.txt"), mode = "0666")
+  system(paste0("df -h /wd | awk  '/wd/ {print $4}' > space"),intern=TRUE)
+  Sys.chmod(c("md5verify.log","md5errors.txt","space"), mode = "0666")
   print("Done")
