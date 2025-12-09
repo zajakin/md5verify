@@ -3,7 +3,8 @@
   if(file.exists("md5verify.log")) unlink(("md5verify.log"))
   cat(date(),file="md5verify.log",append = T)
   system(paste0("(find -not -path '*/#recycle/*' -name md5sum.txt; find -not -path '*/#recycle/*' -name *.md5; find -not -path '*/#recycle/*' -name *_FileInfo.txt) > md5files.txt 2> md5verify.log"),intern=TRUE)
-  Sys.chmod(c("md5verify.log","md5files.txt"), mode = "0666")
+  system(paste0("find -not -path '*/#recycle/*' -name *.pod5 > pod5files.txt"),intern=TRUE)
+  Sys.chmod(c("md5verify.log","md5files.txt","pod5files.txt"), mode = "0666")
   files<-readLines(paste0("md5files.txt"))
   files<-files[!grepl("/[@#]",files)]
   i<-1
