@@ -14,6 +14,7 @@
   for(i in unique(sub("/.*","",sub("^./","",files)))){
     # system(paste0("cd '",i,"' && md5sum `find -type f \\( -not -path '*/#recycle/*' -not -name md5sum.txt -not -name NAS_generated.md5 -not -name *_md5_check_report_NAS.txt \\)` > NAS_generated.md5"),intern=TRUE)
     system(paste0("cd '",i,"' && find -type f -not -name NAS_generated.md5 -not -name *_md5_check_report_NAS.txt -exec md5sum '{}' \\; > NAS_generated.md5"),intern=TRUE)
+    # system(paste0("cd '",i,"' && find -type f -not -name NAS_generated.md5 -not -name *_md5_check_report_NAS.txt -exec md5sum '{}' \\; > NAS_generated.md5 && cd .. && tar cf - '",i,"' | gzip -f9 > '",i,"'.tar.gz"),intern=TRUE)
   }
   # docker pull ghcr.io/zajakin/md5verify && docker run --rm -it --name=md5cover -v /volume3/from_MGI:/wd ghcr.io/zajakin/md5verify /usr/bin/Rscript --vanilla /not_covered_by_md5.R
   # find -type f \( -not -name NAS_generated.md5 -not -name *_md5_check_report_NAS.txt \) -exec md5sum '{}' \; > NAS_generated.md5
