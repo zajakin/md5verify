@@ -7,7 +7,7 @@
   files<-files[!grepl("/[@#]",files)]
   md5<-readLines("md5files.txt")
   md5<-md5[!grepl("/[@#]",md5)]
-  for(i in md5) if(file.exists(i) && file.size(i)>0) files<-files[!files %in% file.path(dirname(i),sub("^./","",as.data.frame(do.call(rbind, strsplit(readLines(i), "  ", fixed = TRUE)))[,2]))]
+  for(i in md5) if(file.exists(i) && file.size(i)>0) files<-files[!files %in% file.path(dirname(i),sub("^./","",as.data.frame(do.call(rbind, strsplit(readLines(i), " ", fixed = TRUE)))[,2]))]
   cat(files,file="not_covered_by_md5.txt",append = F,sep = "\n")
   system(paste0("find -not -path '*/#recycle/*' -name '*.pod5' > pod5files.txt"),intern=TRUE)
   system(paste0("df -h /wd | awk  '/wd/ {print $4}' > space"),intern=TRUE)
